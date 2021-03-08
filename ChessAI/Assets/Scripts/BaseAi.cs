@@ -8,7 +8,7 @@ public class BaseAi : MonoBehaviour
 {
     
     NavMeshAgent agent;
-    [SerializeField] GameObject Enemy;
+    [SerializeField] GameObject enemy;
 
     [SerializeField] float visionDistance = 20.0f;
     [SerializeField] float visionAngle = 30.0f;
@@ -22,13 +22,10 @@ public class BaseAi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
-        
-        if (CanSeeEnemy())
+        if (CanSee(enemy))
         {
             
-            Chase(Enemy.transform.position);
+            Chase(enemy.transform.position);
         }
         else
         {
@@ -52,26 +49,26 @@ public class BaseAi : MonoBehaviour
         agent.SetDestination(this.transform.position - AwayVector);
     }
 
-    private bool CanSeeEnemy()
+    private bool CanSee(GameObject obj)
     {
         // if the enemy is inside the distance and inside vision angle
-        Vector3 distanceFromMeToEnemyVector = Enemy.transform.position - this.transform.position;
+        Vector3 distanceFromMeToObjectVector = obj.transform.position - this.transform.position;
 
-        float angleToEnemy = Vector3.Angle(distanceFromMeToEnemyVector, this.transform.forward);
+        float angleToObject = Vector3.Angle(distanceFromMeToObjectVector, this.transform.forward);
 
         //if the enemy is not behind walls
         RaycastHit hitInfo;
-        Vector3 rayToEnemy = Enemy.transform.position - this.transform.position;
+        Vector3 rayToObj = obj.transform.position - this.transform.position;
 
        
 
-        if (Physics.Raycast(this.transform.position, rayToEnemy, out hitInfo))
+        if (Physics.Raycast(this.transform.position, rayToObj, out hitInfo))
         {
             //To Do If a teammate is in front the ray hits it first
-            if (hitInfo.transform.gameObject.tag == "piece" && distanceFromMeToEnemyVector.magnitude < visionDistance && angleToEnemy < visionAngle)
+            if (hitInfo.transform.gameObject.tag == "piece" && distanceFromMeToObjectVector.magnitude < visionDistance && angleToObject < visionAngle)
             { 
                 //avoid tilt
-                distanceFromMeToEnemyVector.y = 0;
+                distanceFromMeToObjectVector.y = 0;
                 return true;
             }
 
