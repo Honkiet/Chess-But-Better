@@ -22,15 +22,12 @@ public class BaseAi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 distanceFromMeToEnemyVector = Enemy.transform.position - this.transform.position;
+        
 
-        float angleToEnemy = Vector3.Angle(distanceFromMeToEnemyVector, this.transform.forward);
-
-        // if the enemy is inside the distance and inside vision angle
-        if (distanceFromMeToEnemyVector.magnitude < visionDistance && angleToEnemy < visionAngle)
+        
+        if (CanSeeEnemy())
         {
-            //avoid tilt
-            distanceFromMeToEnemyVector.y = 0;
+            
             Chase(Enemy.transform.position);
         }
         else
@@ -44,14 +41,41 @@ public class BaseAi : MonoBehaviour
         
     }
 
-    void Chase(Vector3 destination)
+    private void Chase(Vector3 destination)
     {
         agent.SetDestination(destination);
     }
 
-    void RunAway(Vector3 destination)
+    private void RunAway(Vector3 destination)
     {
         Vector3 AwayVector = destination - this.transform.position;
         agent.SetDestination(this.transform.position - AwayVector);
+    }
+
+    private bool CanSeeEnemy()
+    {
+        // if the enemy is inside the distance and inside vision angle
+        Vector3 distanceFromMeToEnemyVector = Enemy.transform.position - this.transform.position;
+
+        float angleToEnemy = Vector3.Angle(distanceFromMeToEnemyVector, this.transform.forward);
+
+        //if the enemy is not behind walls
+        RaycastHit hitInfo;
+        Vector3 rayToEnemy = Enemy.transform.position - this.transform.position;
+
+       
+
+        if (Physics.Raycast(this.transform.position, rayToEnemy, out hitInfo))
+        {
+            //To Do If a teammate is in front the ray hits it first
+            if (hitInfo.transform.gameObject.tag == "piece" && distanceFromMeToEnemyVector.magnitude < visionDistance && angleToEnemy < visionAngle)
+            { 
+                //avoid tilt
+                distanceFromMeToEnemyVector.y = 0;
+                return true;
+            }
+
+        }
+        return false;
     }
 }
