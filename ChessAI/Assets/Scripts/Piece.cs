@@ -5,6 +5,9 @@ using UnityEngine;
 public class Piece : MonoBehaviour
 {
     [SerializeField] float healthPoints = 100f;
+    [SerializeField] float visionDistance = 20.0f;
+    [SerializeField] float visionAngle = 30.0f;
+    [SerializeField] float dmg = 10f;
 
     bool isDead = false;
 
@@ -28,4 +31,15 @@ public class Piece : MonoBehaviour
 
         isDead = true;
     }
+
+    public float GetVisionDistance()
+    {
+        return (visionDistance);
+    }
+
+    public float GetVisionAngle()
+    {
+        return (visionAngle);
+    }
+
 }

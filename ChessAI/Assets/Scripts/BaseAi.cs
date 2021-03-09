@@ -10,8 +10,7 @@ public class BaseAi : MonoBehaviour
     NavMeshAgent agent;
     [SerializeField] GameObject enemy;
 
-    [SerializeField] float visionDistance = 20.0f;
-    [SerializeField] float visionAngle = 30.0f;
+    [SerializeField] Piece piece;
 
     // Start is called before the first frame update
     void Start()
@@ -65,7 +64,7 @@ public class BaseAi : MonoBehaviour
         if (Physics.Raycast(this.transform.position, rayToObj, out hitInfo))
         {
             //To Do If a teammate is in front the ray hits it first
-            if (hitInfo.transform.gameObject.tag == "piece" && distanceFromMeToObjectVector.magnitude < visionDistance && angleToObject < visionAngle)
+            if (hitInfo.transform.gameObject.tag == "piece" && distanceFromMeToObjectVector.magnitude < piece.GetVisionDistance() && angleToObject < piece.GetVisionAngle())
             { 
                 //avoid tilt
                 distanceFromMeToObjectVector.y = 0;
