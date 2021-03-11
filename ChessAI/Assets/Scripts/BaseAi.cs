@@ -8,21 +8,27 @@ using UnityEngine.Events;
 public class BaseAi : MonoBehaviour
 {
 
-    NavMeshAgent agent;
-    [SerializeField] GameObject enemy;
+    protected NavMeshAgent agent;
+    //remove later
+    [SerializeField] protected GameObject enemy;
+    //rename Units and give each piece a team number or whatever
     List<Transform> enemies;
-
     [SerializeField] Piece piece;
 
     protected UnityAction onChase;
-    Transform enemyTransform;
+    protected UnityAction onAttack;
+    protected UnityAction onFlee;
+    protected UnityAction onPatrol;
+    protected Action<Vector3> onMove;
+
+    //Transform enemyTransform;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         agent = this.GetComponent<NavMeshAgent>();
         enemies = new List<Transform>();
-        onChase += testChase;
+        Debug.Log("1");
     }
 
     protected List<Transform> GetEnemies()
@@ -30,66 +36,6 @@ public class BaseAi : MonoBehaviour
         return enemies;
     }
     
-    private void OnTriggerEnter(Collider other)
-    {
-        switch ((Layer)other.gameObject.layer)
-        {
-            case Layer.Enemy:
-                enemies.Add(other.transform);
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        //todo check if its already in the list
-        switch ((Layer)other.gameObject.layer)
-        {
-            case Layer.Enemy:
-                enemies.Remove(other.transform);
-                break;
-            default:
-                break;
-        }
-    }
-    void testChase()
-    {
-        Debug.Log("hee");
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        if (CanSee(enemy))
-        {
-
-            enemyTransform = enemy.transform;
-            //Chase(enemy.transform.position);
-            onChase?.Invoke();
-        }
-        else
-        {
-            Patrol();
-        }
-    }
-
-    private void Patrol()
-    {
-        
-    }
-
-    //private void Chase(Vector3 destination)
-    //{
-    //    agent.SetDestination(destination);
-    //}
-
-    private void RunAway(Vector3 destination)
-    {
-        Vector3 AwayVector = destination - this.transform.position;
-        agent.SetDestination(this.transform.position - AwayVector);
-    }
-
     protected bool CanSee(GameObject obj)
     {
         // if the enemy is inside the distance and inside vision angle
@@ -117,6 +63,31 @@ public class BaseAi : MonoBehaviour
         return false;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        switch ((Layer)other.gameObject.layer)
+        {
+            case Layer.Enemy:
+                enemies.Add(other.transform);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        //todo check if its already in the list
+        
+        switch ((Layer)other.gameObject.layer)
+        {
+            case Layer.Enemy:
+                enemies.Remove(other.transform);
+                break;
+            default:
+                break;
+        }
+    }
 
 }
 
