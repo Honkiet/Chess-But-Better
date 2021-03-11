@@ -10,6 +10,11 @@ public class Piece : MonoBehaviour
     [SerializeField] float visionAngle = 30.0f;
     [SerializeField] float dmg = 10f;
     [SerializeField] HealthBar healthBar;
+    public float offset;
+    public GameObject projectile;
+    public Transform FirePoint;
+    private float timebtw;
+    public float startTimeBtw;
 
 
     bool isDead = false;
@@ -49,6 +54,27 @@ public class Piece : MonoBehaviour
     public float GetVisionAngle()
     {
         return (visionAngle);
+    }
+
+    private void Update()
+    {
+
+
+
+        if (timebtw <= 0)
+        {
+
+
+            Instantiate(projectile, FirePoint.position, transform.rotation);
+            timebtw = startTimeBtw;
+
+        }
+
+        else
+        {
+            timebtw -= Time.deltaTime;
+        }
+
     }
 
 }
