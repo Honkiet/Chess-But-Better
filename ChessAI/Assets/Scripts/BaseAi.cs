@@ -3,28 +3,70 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class BaseAi : MonoBehaviour
 {
-    
+
     NavMeshAgent agent;
     [SerializeField] GameObject enemy;
+    List<Transform> enemies;
 
     [SerializeField] Piece piece;
+
+    protected UnityAction onChase;
+    Transform enemyTransform;
 
     // Start is called before the first frame update
     void Start()
     {
         agent = this.GetComponent<NavMeshAgent>();
+        enemies = new List<Transform>();
+        onChase += testChase;
     }
 
+    protected List<Transform> GetEnemies()
+    {
+        return enemies;
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        switch ((Layer)other.gameObject.layer)
+        {
+            case Layer.Enemy:
+                enemies.Add(other.transform);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        //todo check if its already in the list
+        switch ((Layer)other.gameObject.layer)
+        {
+            case Layer.Enemy:
+                enemies.Remove(other.transform);
+                break;
+            default:
+                break;
+        }
+    }
+    void testChase()
+    {
+        Debug.Log("hee");
+    }
     // Update is called once per frame
     void Update()
     {
         if (CanSee(enemy))
         {
-            
-            Chase(enemy.transform.position);
+
+            enemyTransform = enemy.transform;
+            //Chase(enemy.transform.position);
+            onChase?.Invoke();
         }
         else
         {
@@ -37,10 +79,10 @@ public class BaseAi : MonoBehaviour
         
     }
 
-    private void Chase(Vector3 destination)
-    {
-        agent.SetDestination(destination);
-    }
+    //private void Chase(Vector3 destination)
+    //{
+    //    agent.SetDestination(destination);
+    //}
 
     private void RunAway(Vector3 destination)
     {
@@ -48,7 +90,7 @@ public class BaseAi : MonoBehaviour
         agent.SetDestination(this.transform.position - AwayVector);
     }
 
-    private bool CanSee(GameObject obj)
+    protected bool CanSee(GameObject obj)
     {
         // if the enemy is inside the distance and inside vision angle
         Vector3 distanceFromMeToObjectVector = obj.transform.position - this.transform.position;
@@ -74,4 +116,11 @@ public class BaseAi : MonoBehaviour
         }
         return false;
     }
+
+
+}
+
+public enum Layer
+{
+    Enemy = 8
 }
