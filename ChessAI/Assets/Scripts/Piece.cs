@@ -10,6 +10,8 @@ public class Piece : MonoBehaviour
     [SerializeField] float visionAngle = 30.0f;
     [SerializeField] float dmg = 10f;
     [SerializeField] HealthBar healthBar;
+    public int teamNumber;
+
     public float offset;
     public GameObject projectile;
     public Transform FirePoint;

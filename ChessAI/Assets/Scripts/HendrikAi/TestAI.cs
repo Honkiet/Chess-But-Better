@@ -2,36 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HendrikAi : BaseAi
+public class TestAI : BaseAi
 {
     // Start is called before the first frame update
     //Update is called once per frame
     
+    [SerializeField] GameObject goal;
     public override void Start()
     {
         base.Start();
         onChase += testChase;
-        
+
     }
     void Update()
     {
-
-        onChase?.Invoke();
-        foreach (Transform unit in units)
-        {
-            if (CanSee(unit.gameObject))
-            {
-                Chase(unit.position);
-
-                if (unit.GetComponent<Piece>().teamNumber == 1)
-                {
-                    Debug.Log("Teammate");
-                }
-                //    //enemyTransform = enemy.transform;
-            }
-
-
-        }
+        Chase(goal.transform.position);
     }
 
     private void Patrol()

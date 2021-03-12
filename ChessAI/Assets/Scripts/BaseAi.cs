@@ -10,9 +10,8 @@ public class BaseAi : MonoBehaviour
 
     protected NavMeshAgent agent;
     //remove later
-    [SerializeField] protected GameObject enemy;
     //rename Units and give each piece a team number or whatever
-    List<Transform> enemies;
+    protected List<Transform> units;
     [SerializeField] Piece piece;
 
     protected UnityAction onChase;
@@ -27,13 +26,13 @@ public class BaseAi : MonoBehaviour
     public virtual void Start()
     {
         agent = this.GetComponent<NavMeshAgent>();
-        enemies = new List<Transform>();
-        Debug.Log("1");
+        units = new List<Transform>();
+        
     }
 
-    protected List<Transform> GetEnemies()
+    protected List<Transform> GetUnitsList()
     {
-        return enemies;
+        return units;
     }
     
     protected bool CanSee(GameObject obj)
@@ -68,7 +67,7 @@ public class BaseAi : MonoBehaviour
         switch ((Layer)other.gameObject.layer)
         {
             case Layer.Enemy:
-                enemies.Add(other.transform);
+                units.Add(other.transform);
                 break;
             default:
                 break;
@@ -82,7 +81,7 @@ public class BaseAi : MonoBehaviour
         switch ((Layer)other.gameObject.layer)
         {
             case Layer.Enemy:
-                enemies.Remove(other.transform);
+                units.Remove(other.transform);
                 break;
             default:
                 break;
