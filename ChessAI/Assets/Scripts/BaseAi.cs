@@ -12,7 +12,7 @@ public class BaseAi : MonoBehaviour
     //remove later
     //rename Units and give each piece a team number or whatever
     protected List<Transform> units;
-    [SerializeField] Piece piece;
+    protected Piece piece;
 
     protected UnityAction onChase;
     protected UnityAction onAttack;
@@ -27,6 +27,7 @@ public class BaseAi : MonoBehaviour
     {
         agent = this.GetComponent<NavMeshAgent>();
         units = new List<Transform>();
+        piece = this.GetComponent<Piece>();
         
     }
 
@@ -64,28 +65,36 @@ public class BaseAi : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        switch ((Layer)other.gameObject.layer)
+        //add if not in the list already
+        if (!units.Contains(other.gameObject.transform))
         {
-            case Layer.Enemy:
-                units.Add(other.transform);
-                break;
-            default:
-                break;
+            switch ((Layer)other.gameObject.layer)
+            {
+                case Layer.Enemy:
+                    units.Add(other.transform);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        //todo check if its already in the list
-        
-        switch ((Layer)other.gameObject.layer)
+        //remove if in the list
+        if (units.Contains(other.gameObject.transform))
         {
-            case Layer.Enemy:
-                units.Remove(other.transform);
-                break;
-            default:
-                break;
+            switch ((Layer)other.gameObject.layer)
+            {
+                case Layer.Enemy:
+                    units.Remove(other.transform);
+                    break;
+                default:
+                    break;
+            }
         }
+
+       
     }
 
 }

@@ -9,9 +9,11 @@ public class HendrikAi : BaseAi
     
     public override void Start()
     {
+
         base.Start();
         onChase += testChase;
-        
+        piece.StartFiring();
+
     }
     void Update()
     {
@@ -19,21 +21,25 @@ public class HendrikAi : BaseAi
         onChase?.Invoke();
         foreach (Transform unit in units)
         {
-            if (CanSee(unit.gameObject))
-            {
-                Chase(unit.position);
-
-                if (unit.GetComponent<Piece>().teamNumber == 1)
+            
+            if (unit.GetComponent<Piece>().teamNumber == 1)
                 {
                     Debug.Log("Teammate");
                 }
-                //    //enemyTransform = enemy.transform;
+            else
+            {
+                Debug.Log("Enemy");
             }
-
-
+            //    //enemyTransform = enemy.transform;
+            if (CanSee(unit.gameObject))
+            {
+                transform.LookAt(unit);
+                
+            }
         }
     }
 
+    
     private void Patrol()
     {
 
@@ -53,4 +59,6 @@ public class HendrikAi : BaseAi
     {
 
     }
+
+    
 }

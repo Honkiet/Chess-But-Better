@@ -8,15 +8,16 @@ public class Piece : MonoBehaviour
     [SerializeField] int currentHealth;
     [SerializeField] float visionDistance = 20.0f;
     [SerializeField] float visionAngle = 30.0f;
-    [SerializeField] float dmg = 10f;
     [SerializeField] HealthBar healthBar;
     public int teamNumber;
 
-    public float offset;
-    public GameObject projectile;
-    public Transform FirePoint;
-    private float timebtw;
-    public float startTimeBtw;
+    [SerializeField] float timebtw;
+
+    //public float offset;
+    [SerializeField] GameObject projectile;
+    [SerializeField] Transform firePoint;
+    [SerializeField] float shootPower = 400f;
+   
 
 
     bool isDead = false;
@@ -41,6 +42,13 @@ public class Piece : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.tag == "bullet")
+        {
+            TakeDamage(col.transform.GetComponent<Bullet1>().GetDmg());
+        }
+    }
     private void Die()
     {
         if (isDead) return;
@@ -63,20 +71,36 @@ public class Piece : MonoBehaviour
 
 
 
-        if (timebtw <= 0)
-        {
+        //if (timebtw <= 0)
+        //{
 
 
-            Instantiate(projectile, FirePoint.position, transform.rotation);
-            timebtw = startTimeBtw;
+        //    Instantiate(projectile, FirePoint.position, transform.rotation);
+        //    timebtw = startTimeBtw;
 
-        }
+        //}
 
-        else
-        {
-            timebtw -= Time.deltaTime;
-        }
+        //else
+        //{
+        //    timebtw -= Time.deltaTime;
+        //}
 
     }
 
+
+    private void Fire()
+    {
+        GameObject bullet = Instantiate(projectile, firePoint.transform.position, firePoint.transform.rotation);
+        bullet.GetComponent<Rigidbody>().AddForce(firePoint.transform.forward * shootPower);
+    }
+
+    public void StopFiring()
+    {
+        CancelInvoke("Fire");
+    }
+
+    public void StartFiring()
+    {
+        InvokeRepeating("Fire", timebtw, timebtw);
+    }
 }
