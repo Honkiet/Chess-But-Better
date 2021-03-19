@@ -11,12 +11,8 @@ public class Piece : MonoBehaviour
     [SerializeField] HealthBar healthBar;
     public int teamNumber;
 
-    [SerializeField] float timebtw;
 
     //public float offset;
-    [SerializeField] GameObject projectile;
-    [SerializeField] Transform firePoint;
-    [SerializeField] float shootPower = 400f;
    
 
 
@@ -66,41 +62,5 @@ public class Piece : MonoBehaviour
         return (visionAngle);
     }
 
-    private void Update()
-    {
 
-
-
-        //if (timebtw <= 0)
-        //{
-
-
-        //    Instantiate(projectile, FirePoint.position, transform.rotation);
-        //    timebtw = startTimeBtw;
-
-        //}
-
-        //else
-        //{
-        //    timebtw -= Time.deltaTime;
-        //}
-
-    }
-
-
-    private void Fire()
-    {
-        GameObject bullet = Instantiate(projectile, firePoint.transform.position, firePoint.transform.rotation);
-        bullet.GetComponent<Rigidbody>().AddForce(firePoint.transform.forward * shootPower);
-    }
-
-    public void StopFiring()
-    {
-        CancelInvoke("Fire");
-    }
-
-    public void StartFiring()
-    {
-        InvokeRepeating("Fire", timebtw, timebtw);
-    }
 }

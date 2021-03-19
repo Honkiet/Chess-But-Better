@@ -349,12 +349,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2380632358808746686}
   - component: {fileID: 2380632358808746680}
-  - component: {fileID: 8363673794870305698}
   - component: {fileID: 626006466}
   - component: {fileID: 6236605488516645516}
   - component: {fileID: 6993368396028189390}
+  - component: {fileID: 7840316645783065716}
   m_Layer: 8
-  m_Name: Piece 1
+  m_Name: Ranged
   m_TagString: piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -400,29 +400,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8363673794870305698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2380632358808746690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4cfeed4577001543bf6e200e30dd8a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 0
-  visionDistance: 20
-  visionAngle: 30
-  healthBar: {fileID: 544824142650545671}
-  teamNumber: 1
-  timebtw: 2
-  projectile: {fileID: 1371740047407825916, guid: 42725b9ea91c1b441814774df9253fc3,
-    type: 3}
-  firePoint: {fileID: 8764318158250671446}
-  shootPower: 700
 --- !u!114 &626006466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,6 +442,29 @@ CapsuleCollider:
   m_Height: 2.8635392
   m_Direction: 1
   m_Center: {x: 0, y: -0.22906613, z: 0}
+--- !u!114 &7840316645783065716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2380632358808746690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37176d48b5452c942b831942b088a57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  visionDistance: 20
+  visionAngle: 30
+  healthBar: {fileID: 544824142650545671}
+  teamNumber: 1
+  timebtw: 2
+  projectile: {fileID: 1371740047407825916, guid: 42725b9ea91c1b441814774df9253fc3,
+    type: 3}
+  firePoint: {fileID: 8764318158250671446}
+  shootPower: 400
 --- !u!1 &4059157602739661933
 GameObject:
   m_ObjectHideFlags: 0

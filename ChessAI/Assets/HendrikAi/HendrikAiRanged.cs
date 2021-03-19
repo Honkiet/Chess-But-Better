@@ -2,23 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestAI : BaseAi
+public class HendrikAiRanged : BaseAiRanged
 {
     // Start is called before the first frame update
     //Update is called once per frame
     
-    [SerializeField] GameObject goal;
     public override void Start()
     {
+
         base.Start();
         onChase += testChase;
+        piece.StartFiring();
 
     }
     void Update()
     {
-        Chase(goal.transform.position);
+
+        onChase?.Invoke();
+        foreach (Transform unit in units)
+        {
+            
+            if (unit.GetComponent<Piece>().teamNumber == 1)
+                {
+                    Debug.Log("Teammate");
+                }
+            else
+            {
+                Debug.Log("Enemy");
+            }
+            //    //enemyTransform = enemy.transform;
+            if (CanSee(unit.gameObject))
+            {
+                transform.LookAt(unit);
+                
+            }
+        }
     }
 
+    
     private void Patrol()
     {
 
@@ -38,4 +59,6 @@ public class TestAI : BaseAi
     {
 
     }
+
+    
 }

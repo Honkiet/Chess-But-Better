@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HendrikAi : BaseAi
+public class HendrikAiMelee : BaseAiMelee
 {
     // Start is called before the first frame update
     //Update is called once per frame
-    
+
     public override void Start()
     {
 
         base.Start();
         onChase += testChase;
-        piece.StartFiring();
+        
 
     }
     void Update()
@@ -21,11 +21,11 @@ public class HendrikAi : BaseAi
         onChase?.Invoke();
         foreach (Transform unit in units)
         {
-            
+
             if (unit.GetComponent<Piece>().teamNumber == 1)
-                {
-                    Debug.Log("Teammate");
-                }
+            {
+                Debug.Log("Teammate");
+            }
             else
             {
                 Debug.Log("Enemy");
@@ -34,12 +34,12 @@ public class HendrikAi : BaseAi
             if (CanSee(unit.gameObject))
             {
                 transform.LookAt(unit);
-                
+
             }
         }
     }
 
-    
+
     private void Patrol()
     {
 
@@ -60,5 +60,5 @@ public class HendrikAi : BaseAi
 
     }
 
-    
+
 }
