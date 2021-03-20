@@ -445,6 +445,9 @@ MonoBehaviour:
   visionAngle: 30
   healthBar: {fileID: 8044091725336926465}
   teamNumber: 1
+  animator: {fileID: 0}
+  attackSpot: {fileID: 1264628072928948816}
+  attackRange: 0.5
 --- !u!114 &897711400465079639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -469,7 +472,7 @@ GameObject:
   - component: {fileID: 95538667871420684}
   - component: {fileID: 6607753393839293240}
   m_Layer: 8
-  m_Name: FirePoint
+  m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -11,32 +11,14 @@ public class HendrikAiMelee : BaseAiMelee
     {
 
         base.Start();
-        onChase += testChase;
+        
         
 
     }
     void Update()
     {
 
-        onChase?.Invoke();
-        foreach (Transform unit in units)
-        {
-
-            if (unit.GetComponent<Piece>().teamNumber == 1)
-            {
-                Debug.Log("Teammate");
-            }
-            else
-            {
-                Debug.Log("Enemy");
-            }
-            //    //enemyTransform = enemy.transform;
-            if (CanSee(unit.gameObject))
-            {
-                transform.LookAt(unit);
-
-            }
-        }
+        piece.Attack();
     }
 
 
@@ -60,5 +42,5 @@ public class HendrikAiMelee : BaseAiMelee
 
     }
 
-
+    
 }

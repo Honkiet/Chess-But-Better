@@ -446,6 +446,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3895939661692134657, guid: d9fb878fff89f7943849aef98628ac83,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 624471325}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9fb878fff89f7943849aef98628ac83, type: 3}
 --- !u!4 &76071121 stripped
@@ -2284,6 +2289,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 838913797}
     m_Modifications:
+    - target: {fileID: 709312177937104159, guid: 202a19894d1fdb14a9af941533705b73,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 624471325}
     - target: {fileID: 1048028114079175434, guid: 202a19894d1fdb14a9af941533705b73,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -5300,6 +5310,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 838913797}
     m_Modifications:
+    - target: {fileID: 709312177937104159, guid: 202a19894d1fdb14a9af941533705b73,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 624471325}
     - target: {fileID: 1048028114079175434, guid: 202a19894d1fdb14a9af941533705b73,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -11466,6 +11481,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3895939661692134657, guid: d9fb878fff89f7943849aef98628ac83,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 624471325}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9fb878fff89f7943849aef98628ac83, type: 3}
 --- !u!4 &2107229164 stripped

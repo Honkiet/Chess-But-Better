@@ -24,11 +24,11 @@ public class HendrikAiRanged : BaseAiRanged
             
             if (unit.GetComponent<Piece>().teamNumber == 1)
                 {
-                    Debug.Log("Teammate");
+                    //Debug.Log("Teammate");
                 }
             else
             {
-                Debug.Log("Enemy");
+                //Debug.Log("Enemy");
             }
             //    //enemyTransform = enemy.transform;
             if (CanSee(unit.gameObject))

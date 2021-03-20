@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 9121886139630091920}
   - component: {fileID: 2627687961836387492}
   m_Layer: 8
-  m_Name: FirePoint
+  m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -271,7 +271,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3439869149579566327}
   m_LocalRotation: {x: -0.0715066, y: -0, z: -0, w: 0.99744016}
-  m_LocalPosition: {x: -0.060000002, y: 0.3929999, z: 0.8579998}
+  m_LocalPosition: {x: -0.060000002, y: 0.04, z: 1.67}
   m_LocalScale: {x: 0.4035, y: 0.4035, z: 0.4035}
   m_Children: []
   m_Father: {fileID: 3954279310810155556}
@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 5950198701737793413}
   - component: {fileID: 8336540281616048843}
   m_Layer: 8
-  m_Name: Tank (1)
+  m_Name: HendrikTank
   m_TagString: piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -352,7 +352,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3954279310810155608}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 89.60894, y: 1.73, z: 2.4474576}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -433,6 +433,10 @@ MonoBehaviour:
   visionAngle: 30
   healthBar: {fileID: 1181704772187743901}
   teamNumber: 1
+  animator: {fileID: 0}
+  attackSpot: {fileID: 7946817581515869644}
+  attackRange: 1
+  attackCooldown: 1
 --- !u!114 &8336540281616048843
 MonoBehaviour:
   m_ObjectHideFlags: 0
