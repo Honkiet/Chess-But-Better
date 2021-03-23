@@ -29,7 +29,7 @@ public class BaseAi : MonoBehaviour
 
     }
 
-    protected List<Transform> GetUnitsList()
+    public List<Transform> GetUnitsList()
     {
         return units;
     }
