@@ -9,6 +9,8 @@ public class PieceBaseFSM : StateMachineBehaviour
     public BaseAi baseAi;
     public List<Transform> otherUnits;
 
+    public float accuracy = 5.0f;
+
     //stats etc
     public Piece piece;
     public NavMeshAgent agent;
