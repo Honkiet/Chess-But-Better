@@ -15,8 +15,12 @@ public class RangedAttack : PieceBaseFSM
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
 	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
+		// Every 2 seconds calculate the distace to all enemys and Look at opponent
 		GameObject opponent = ;
 		ranged.transform.LookAt(opponent.transform.position);
+		// check if a mate is between and swap targets
+
+		// Change the Lookat to movement prediction
 	}
 
 	// OnStateExit is called when a transition ends and the state machine finishes evaluating this state
