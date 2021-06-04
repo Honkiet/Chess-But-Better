@@ -16,8 +16,7 @@ public class RangedAttack : PieceBaseFSM
 	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
 		// Every 2 seconds calculate the distace to all enemys and Look at opponent
-		GameObject opponent = ;
-		ranged.transform.LookAt(opponent.transform.position);
+		
 		// check if a mate is between and swap targets
 
 		// Change the Lookat to movement prediction
