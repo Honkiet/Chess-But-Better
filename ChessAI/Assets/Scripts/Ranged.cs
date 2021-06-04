@@ -25,6 +25,7 @@ public class Ranged : Piece
 
     public void StartFiring()
     {
-        InvokeRepeating("Fire", timebtw, timebtw);
+       // InvokeRepeating("Fire", timebtw, timebtw);
     }
+ 
 }

@@ -9,6 +9,11 @@ public class BaseAiRanged : BaseAi
 {
     //different values
     protected Ranged piece ;
+    [SerializeField] float timebtw;
+
+    public GameObject projectile;
+    [SerializeField] Transform firePoint;
+    [SerializeField] float shootPower = 400f;
 
     // Start is called before the first frame update
     public override void Start()
@@ -44,5 +49,25 @@ public class BaseAiRanged : BaseAi
 
         }
         return false;
+    }
+    
+    
+
+    protected void Fire(GameObject bullet1)
+    {
+        GameObject bullet = Instantiate(bullet1, firePoint.transform.position, firePoint.transform.rotation);
+        bullet.GetComponent<Rigidbody>().AddForce(firePoint.transform.forward * shootPower);
+        Debug.Log("123");
+
+    }
+
+    protected void StopFiring()
+    {
+       // CancelInvoke("Fire");
+    }
+
+    protected void StartFiring()
+    {
+       // InvokeRepeating("Fire", timebtw, timebtw);
     }
 }

@@ -6,7 +6,7 @@ public class Bullet1 : MonoBehaviour
 {
     //[SerializeField] GameObject explosion;
     [SerializeField] int dmg;
-
+    public GameObject explosion;
 
     void OnCollisionEnter(Collision col)
     {
@@ -14,7 +14,7 @@ public class Bullet1 : MonoBehaviour
 
         //GameObject explosionEffect = Instantiate(explosion, this.transform.position, Quaternion.identity);
         //Destroy(explosionEffect, 2f);
-
+        Instantiate(explosion, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
 

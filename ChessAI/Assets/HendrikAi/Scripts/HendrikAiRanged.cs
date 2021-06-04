@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HendrikAiRanged : BaseAiRanged
+/*public class HendrikAiRanged : BaseAiRanged
 {
     // Start is called before the first frame update
     //Update is called once per frame
@@ -22,16 +22,16 @@ public class HendrikAiRanged : BaseAiRanged
         foreach (Transform unit in units)
         {
             
-            if (unit.GetComponent<Piece>().teamNumber == 1)
+           // if (unit.GetComponent<Piece>().teamNumber == 1)
                 {
                     //Debug.Log("Teammate");
                 }
-            else
+           // else
             {
                 //Debug.Log("Enemy");
             }
             //    //enemyTransform = enemy.transform;
-            if (CanSee(unit.gameObject))
+           // if (CanSee(unit.gameObject))
             {
                 transform.LookAt(unit);
                 
@@ -62,3 +62,4 @@ public class HendrikAiRanged : BaseAiRanged
 
     
 }
+  */

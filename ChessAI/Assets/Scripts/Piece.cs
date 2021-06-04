@@ -50,6 +50,7 @@ public class Piece : MonoBehaviour
         if (isDead) return;
 
         isDead = true;
+        Destroy(gameObject);
     }
 
     public float GetVisionDistance()
